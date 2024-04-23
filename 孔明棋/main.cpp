@@ -1,61 +1,85 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include"solitaire.h"
-#include"Bidirectional_BFS.h"
+#include"Boardgame_simple.h"
+
 int main()
 {
+	/*string s=Boardgame_simple::read_string();
+	cout << s;*/
 
-	long long state1 = State::string_to_state("111111111111111101111111111111111");
-	//cout << state1 << endl;
-	State s1(state1);
-	State s2(State::state_final);
-//	char s[7][7];
-	//s1.transfer_to_array(s);
-	//s1.print();
-	//State s3(s);
-	//s3.print();
-	//s1.print();
-	//s2.print();
+	/*string s = "..***...0..***...0*******.0***o***.0*******.0..***...0..***...0........";
+	Boardgame_simple case2(s);
+	case2.print_simplecase();*/
+
+
+
+
+	//char array[10][10];
+	//Boardgame_central centralcase2(Boardgame_simple::read_string());
+	//centralcase2.print_centralcase();
+	////centralcase2.LeastStepsSolve();
+	////centralcase2.print_LeastStepsSolve();
+	//memcpy(array, centralcase2.chessboard, sizeof(centralcase2.chessboard));
+	//centralcase2.turn_unsecure(array);
+	//centralcase2.print_chessboard(array);
+
+	//centralcase2.turn_unsecure(array);
+	//centralcase2.print_chessboard(array);
+
+	//centralcase2.turn_unsecure(array);
+	//centralcase2.print_chessboard(array);
+
+	//centralcase2.turn_unsecure(array);
+	//centralcase2.print_chessboard(array);
+
 	//return 0;
-	long long state3 = State::string_to_state("100101000100000000100000000000000");
-	long long state4 = State::string_to_state("000001001110011110000110000100011");
-	State s3(state3);
-	/*s3.print();
-	char s[7][7];
-	s3.transfer_to_array(s);*/
-	/*for (int i = 0; i < 7; i++)
+
+	int op = 1;
+	while (op)
 	{
-		for (int j = 0; j < 7; j++)
-		{
-			if (s[i][j] == -1)
-				cout << "2 ";
-			else if (s[i][j] == 0)
-				cout << "0 ";
-			else if (s[i][j] == 1)
-				cout << "1 ";
+		cout << "1.simple棋局创建" << endl << "2.central棋局创建" << endl << "3.central棋局，内存优化求解" << endl;
+		cout << "4.central more less memory" << endl;
+		cout << "5.central_BFS棋局创建，搜索最少剩余的一个解" << endl;
+		scanf("%d", &op);
+		switch (op) {
+
+		case 0:
+			break;
+		case 1: {
+			Boardgame_simple simplecase1(Boardgame_simple::read_string());
+			simplecase1.print_simplecase();
+			simplecase1.OnlyOneLeft();
+			simplecase1.print_OnlyOneLeft();
+			break;
 		}
-		cout << endl;
-	}*/
-	//return 0;
-
-
-	//long long temp;
-	//while (scanf("%lld", &temp) > 0)
-	//{
-	//	State s(temp);
-	//	s.print();
-	//}
-	//return 0;
-	Bidirectional_BFS case3(state4, State::state_final);
-	cout << case3.solve() << endl;
-	cout << case3.state_map[State::state_final];
-	case3.route_print();
-	return 0;
-	Bidirectional_BFS case1(state1, State::state_final);
-	cout<<case1.solve()<<endl;
-	cout << case1.state_map[case1.destin_state]<<endl;
-	
-	Bidirectional_BFS case2(state3, State::state_final);
-	cout << case2.solve()<<endl;
-	cout << case2.state_map[case2.destin_state];
+		case 2: {
+			Boardgame_central centralcase2(Boardgame_simple::read_string(), 18);
+			centralcase2.print_centralcase();
+			centralcase2.LeastStepsSolve();
+			centralcase2.print_LeastStepsSolve();
+			break;
+		}
+		case 3: {
+			Boardgame_central centralcase3(Boardgame_simple::read_string());
+			centralcase3.print_centralcase();
+			centralcase3.LeastStepsSolve_less_memory();
+			centralcase3.print_LeastStepsSolve();
+			break;
+		}
+		case 4: {
+			Boardgame_central centralcase4(Boardgame_simple::read_string());
+			centralcase4.print_centralcase();
+			centralcase4.LeastStepsSolve_more_less_memory();
+			centralcase4.print_LeastStepsSolve();
+			break;
+		}
+		case 5: {
+			Boardgame_central centralcase5(Boardgame_simple::read_string());
+			centralcase5.print_simplecase();
+			centralcase5.OnlyOneLeft();
+			centralcase5.print_OnlyOneLeft();
+			break;
+		}
+		}//switch
+	}//while
 	return 0;
 }

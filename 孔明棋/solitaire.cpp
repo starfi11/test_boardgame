@@ -1,84 +1,71 @@
 #include"solitaire.h"
-State::State(char s[7][7]) {
-	//将二维数组压缩为棋局状态（二维数组要求四角为-1）
+long long OriginState::array_to_state_efficient(char array[10][10], int up, int down, int left, int right)
+{
+	long long ans = 0;
+	for(int i=up;i<=down;i++)
+		for(int j=left;j<=right;j++)
+			if (array[i][j] != -1)
+			{
+				ans *= 2;
+				ans += array[i][j];
+			}
+	return ans;
+}
+int OriginState::get_chessnum()//计算棋局中棋子的个数
+{
+	long long temp = state;
+	int ans = 0;
+	while (temp)
+	{
+		ans++;
+		temp = temp & (temp - 1);
+	}
+	return ans;
+}
+long long OriginState::array_to_state_unsecure(char array[board_maxlength][board_maxlength])
+{
 	long long temp = 0;
-	for (int i = 6; i >= 0; i--)
-		for (int j = 6; j >= 0; j--)
+	for (int i = 0; i < board_maxlength; i++)
+		for (int j = 0; j < board_maxlength; j++)
 		{
-			if (s[i][j] == -1)
+			if (array[i][j] == -1)
 				continue;
 			temp *= 2;
-			temp += s[i][j];
+			temp += array[i][j];
 		}
-	this->state = temp;
+	return temp;
 }
-void State::transfer_to_array(char s[7][7]) {
-	//将棋局状态解压为二维数组
-	State::array_init(s);
-	long long temp = this->state;
-	for (int i = 0; i < 7; i++)
-	{
-		for (int j = 0; j < 7; j++)
-		{
-			if (s[i][j] == -1)
-				continue;
-			s[i][j] = temp % 2;
-			temp /= 2;
-		}
-	}
-}
-void State::array_init(char s[7][7]) {
-	//类静态函数：将数组四角的非法区域以-1标记
-	for (int i = 0; i < 2; i++)
-		for (int j = 0; j < 2; j++)
-		{
-			s[i][j] = -1;
-			s[i + 5][j] = -1;
-			s[i][j + 5] = -1;
-			s[i + 5][j + 5] = -1;
-		}
-}
-long long State::string_to_state(string s)
+long long OriginState::string_to_state(string s)
 {
-	if (s.size() != 33)
-		return State::state_final;
 	long long ans = 0;
-	for (int i = 32; i >=0 ; i--)
+	for (int i = 0; i < s.size(); i++)
 	{
 		ans *= 2;
 		ans += s[i] - '0';
 	}
 	return ans;
 }
-void State::print() {
-	char s[7][7];
-	this->transfer_to_array(s);
-	for (int i = 0; i < 7; i++)
-	{
-		for (int j = 0; j < 7; j++)
-		{
-			if (s[i][j] == -1)
-				cout << "2 ";
-			else if (s[i][j] == 0)
-				cout << "0 ";
-			else if (s[i][j] == 1)
-				cout << "1 ";
-		}
-		cout << endl;
-	}
-}
-void State::array_print(char s[7][7])
+string OriginState::array_to_string(char array[board_maxlength][board_maxlength])
 {
-	for (int i = 0; i < 7; i++)
+	string ans;
+	for (int i = 0; i < board_maxlength; i++)
+		for (int j = 0; j < board_maxlength; j++)
+			if (array[i][j] != -1)
+				ans += array[i][j] + '0';
+	return ans;
+}
+void OriginState::array_print(char s[board_maxlength][board_maxlength])
+{
+	for (int i = 0; i < board_maxlength; i++)
 	{
-		for (int j = 0; j < 7; j++)
+		for (int j = 0; j < board_maxlength; j++)
 		{
 			if (s[i][j] == -1)
-				cout << "2 ";
+				cout << ". ";
 			else if (s[i][j] == 0)
-				cout << "0 ";
+				cout << "o ";
 			else if (s[i][j] == 1)
-				cout << "1 ";
+				cout << "* ";
 		}
 		cout << endl;
 	}

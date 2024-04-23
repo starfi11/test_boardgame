@@ -18,7 +18,7 @@
     <ClInclude Include="solitaire.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Bidirectional_BFS.h">
+    <ClInclude Include="Boardgame_simple.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -26,10 +26,13 @@
     <ClCompile Include="solitaire.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Bidirectional_BFS.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Boardgame_simple.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Boardgame_central.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
