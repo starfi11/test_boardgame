@@ -614,202 +614,204 @@ void Boardgame_central::OnlyOneLeft()
 
 	}
 }
-//void Boardgame_central::OnlyOneLeft()
-////使用双向bfs，面向中心对称棋局，求解和父类OnlyOneLeft一样的问题
-//{
-//	queue<OriginState>forward;
-//	queue<OriginState>backward;
-//	map<long long, string>state_map;
-//	map<long long, string>back_map;
-//
-//	forward.push(OriginState(this->origin_state));
-//	backward.push(OriginState(this->destin_state));
-//	char s[OriginState::board_maxlength][OriginState::board_maxlength];
-//	memcpy(s, this->chessboard, sizeof(chessboard));
-//	while ((!forward.empty()) && (!backward.empty()))
-//	{
-//
-//
-//		long long ostate = forward.front().state;
-//		if (back_map.count(ostate))
-//		{
-//			//将反串拼接至正串中
-//			string tempstring = back_map[ostate];
-//			state_map[this->destin_state] = state_map[ostate];
-//			for (int i = tempstring.size() - 3; i >= 0; i -= 3)
-//			{
-//				state_map[this->destin_state] += tempstring.substr(i, 3);
-//			}
-//			this->anwser_simple = state_map[this->destin_state];
-//			return;
-//		}
-//		//if (ostate!=this->origin_state&&state_map.count(ostate)) {
-//		//	forward.pop();
-//		//	continue;
-//		//}
-//		forward.front().array_to_state_efficient(s, this->up, down, left, right);
-//		int forwardnum = forward.front().get_chessnum();
-//		forward.pop();
-//		//正向
-//
-//		if (forwardnum > this->method_dividing)
-//		{//遍历空格
-//			for (int i = up; i <= down; i++)
-//				for (int j = left; j <= right; j++)
-//					if (s[i][j] == 0)
-//						for (int k = 0; k < 4; k++)
-//						{
-//							int x1 = i + dx[k], x2 = i + dx[k] * 2;
-//							int y1 = j + dy[k], y2 = j + dy[k] * 2;
-//							if (x1 >= up && x1 <= down &&
-//								x2 >= up && x2 <= down &&
-//								y1 >= left && y1 <= right &&
-//								y2 >= left && y2 <= right)
-//								if (s[x1][y1] == 1 && s[x2][y2] == 1)
-//								{
-//									s[i][j] = 1;
-//									s[x1][y1] = 0;
-//									s[x2][y2] = 0;
-//									OriginState temps = OriginState(s,up,down,left,right);
-//									if (!this->isrepeated_state(temps))//表中没有记录该状态 且没有等效状态
-//									{
-//										this->state_map[temps.state] = state_map[ostate] + two_string(numarray[x2][y2]) + direction[k ^ 1];
-//										//cout << "forward" << state_map[temps.state]<<endl;
-//										forward.push(temps);
-//									}
-//									else {
-//										//表中已记录该状态，可以什么也不做，也可以比较步数，步数小则覆盖
-//									}
-//
-//									s[i][j] = 0;
-//									s[x1][y1] = 1;
-//									s[x2][y2] = 1;
-//								}
-//						}
-//		}
-//		else {
-//			//遍历棋子 forward
-//			for (int i = 0; i < 7; i++)
-//				for (int j = 0; j < 7; j++)
-//					if (s[i][j] == 1)
-//						for (int k = 0; k < 4; k++)
-//						{
-//							int x1 = i + dx[k], x2 = i + dx[k] * 2;
-//							int y1 = j + dy[k], y2 = j + dy[k] * 2;
-//							if (x1 >= 0 && x1 < 7 &&
-//								x2 >= 0 && x2 < 7 &&
-//								y1 >= 0 && y1 < 7 &&
-//								y2 >= 0 && y2 < 7)
-//								if (s[x1][y1] == 1 && s[x2][y2] == 0)
-//								{
-//									s[i][j] = 0;
-//									s[x1][y1] = 0;
-//									s[x2][y2] = 1;
-//									State temps = State(s);
-//									if (!this->isrepeated_state(temps))//表中没有记录该状态
-//									{
-//										this->state_map[temps.state] = state_map[ostate] + two_string(numarray[i][j]) + direction[k];
-//										//cout << "backward" << backmap[temps.state]<<endl;
-//										forward.push(temps);
-//									}
-//									else {
-//										//表中已记录该状态，可以什么也不做，也可以比较步数，步数小则覆盖
-//									}
-//
-//									s[i][j] = 1;
-//									s[x1][y1] = 1;
-//									s[x2][y2] = 0;
-//								}
-//						}
-//		}
-//		ostate = backward.front().state;
-//		if (state_map.count(ostate))
-//		{
-//			string tempstring = back_map[ostate];
-//			state_map[this->destin_state] = state_map[ostate];
-//			for (int i = tempstring.size() - 3; i >= 0; i -= 3)
-//			{
-//				state_map[this->destin_state] += tempstring.substr(i, 3);
-//			}
-//			return 1;
-//		}
-//		/*	if (ostate!=this->destin_state&&backmap.count(ostate)) {
-//				backward.pop();
-//				continue;
-//			}*/
-//		backward.front().transfer_to_array(s);
-//		int backwardnum = backward.front().true_count();
-//		backward.pop();
-//		if (backwardnum < BidirectionalBFS::dividing)
-//		{//遍历棋子
-//			for (int i = 0; i < 7; i++)
-//				for (int j = 0; j < 7; j++)
-//					if (s[i][j] == 1)
-//						for (int k = 0; k < 4; k++)
-//						{
-//							int x1 = i + dx[k], x2 = i + dx[k] * 2;
-//							int y1 = j + dy[k], y2 = j + dy[k] * 2;
-//							if (x1 >= 0 && x1 < 7 &&
-//								x2 >= 0 && x2 < 7 &&
-//								y1 >= 0 && y1 < 7 &&
-//								y2 >= 0 && y2 < 7)
-//								if (s[x1][y1] == 0 && s[x2][y2] == 0)
-//								{
-//									s[i][j] = 0;
-//									s[x1][y1] = 1;
-//									s[x2][y2] = 1;
-//									State temps = State(s);
-//									if (!this->isrepeated_backstate(temps))//表中没有记录该状态
-//									{
-//										this->back_map[temps.state] = back_map[ostate] + two_string(numarray[x2][y2]) + direction[k ^ 1];
-//										//cout << "backward" << backmap[temps.state]<<endl;
-//										backward.push(temps);
-//									}
-//									else {
-//										//表中已记录该状态，可以什么也不做，也可以比较步数，步数小则覆盖
-//									}
-//
-//									s[i][j] = 1;
-//									s[x1][y1] = 0;
-//									s[x2][y2] = 0;
-//								}
-//						}
-//		}
-//		else {
-//			//遍历空格 backward
-//			for (int i = 0; i < 7; i++)
-//				for (int j = 0; j < 7; j++)
-//					if (s[i][j] == 0)
-//						for (int k = 0; k < 4; k++)
-//						{
-//							int x1 = i + dx[k], x2 = i + dx[k] * 2;
-//							int y1 = j + dy[k], y2 = j + dy[k] * 2;
-//							if (x1 >= 0 && x1 < 7 &&
-//								x2 >= 0 && x2 < 7 &&
-//								y1 >= 0 && y1 < 7 &&
-//								y2 >= 0 && y2 < 7)
-//								if (s[x1][y1] == 0 && s[x2][y2] == 1)
-//								{
-//									s[i][j] = 1;
-//									s[x1][y1] = 1;
-//									s[x2][y2] = 0;
-//									State temps = State(s);
-//									if (!this->isrepeated_backstate(temps))//表中没有记录该状态
-//									{
-//										this->back_map[temps.state] = back_map[ostate] + two_string(numarray[i][j]) + direction[k];
-//										//cout << "forward" << state_map[temps.state] << endl;
-//										backward.push(temps);
-//									}
-//									else {
-//										//表中已记录该状态，可以什么也不做，也可以比较步数，步数小则覆盖
-//									}
-//
-//									s[i][j] = 0;
-//									s[x1][y1] = 0;
-//									s[x2][y2] = 1;
-//								}
-//						}
-//		}
-//
-//	}//while
-//}
+void Boardgame_central::OnlyOneLeft_BycicleBFS()
+{
+	queue<OriginState>forward;
+	queue<OriginState>backward;
+	map<long long, string>state_map;
+	map<long long, string>back_map;
+
+	forward.push(OriginState(this->origin_state));
+	backward.push(OriginState(this->destin_state));
+	char s[OriginState::board_maxlength][OriginState::board_maxlength];
+	memcpy(s, this->chessboard, sizeof(chessboard));
+	while ((!forward.empty()) && (!backward.empty()))
+	{
+
+
+		long long ostate = forward.front().state;
+		if (back_map.count(ostate))
+		{
+			//将反串拼接至正串中
+			string tempstring = back_map[ostate];
+			state_map[this->destin_state] = state_map[ostate];
+			for (int i = tempstring.size() - 3; i >= 0; i -= 3)
+			{
+				state_map[this->destin_state] += tempstring.substr(i, 3);
+			}
+			this->anwser_simple = state_map[this->destin_state];
+			this->chessnum_min = 1;
+			return;
+		}
+		//if (ostate!=this->origin_state&&state_map.count(ostate)) {
+		//	forward.pop();
+		//	continue;
+		//}
+		forward.front().array_to_state_efficient(s, this->up, down, left, right);
+		int forwardnum = forward.front().get_chessnum();
+		forward.pop();
+		//正向
+
+		if (forwardnum > this->method_dividing)
+		{//遍历空格
+			for (int i = up; i <= down; i++)
+				for (int j = left; j <= right; j++)
+					if (s[i][j] == 0)
+						for (int k = 0; k < 4; k++)
+						{
+							int x1 = i + dx[k], x2 = i + dx[k] * 2;
+							int y1 = j + dy[k], y2 = j + dy[k] * 2;
+							if (x1 >= up && x1 <= down &&
+								x2 >= up && x2 <= down &&
+								y1 >= left && y1 <= right &&
+								y2 >= left && y2 <= right)
+								if (s[x1][y1] == 1 && s[x2][y2] == 1)
+								{
+									s[i][j] = 1;
+									s[x1][y1] = 0;
+									s[x2][y2] = 0;
+									OriginState temps = OriginState(s,up,down,left,right);
+									if (!this->isrepeated_state(temps,state_map))//表中没有记录该状态 且没有等效状态
+									{
+										state_map[temps.state] = state_map[ostate] + this->num_to_string(x2, y2) + char(k ^ 1 + '0');
+										//cout << "forward" << state_map[temps.state]<<endl;
+										forward.push(temps);
+									}
+									else {
+										//表中已记录该状态，可以什么也不做，也可以比较步数，步数小则覆盖
+									}
+
+									s[i][j] = 0;
+									s[x1][y1] = 1;
+									s[x2][y2] = 1;
+								}
+						}
+		}
+		else {
+			//遍历棋子 forward
+			for (int i = up; i <= down; i++)
+				for (int j = left; j <= right; j++)
+					if (s[i][j] == 1)
+						for (int k = 0; k < 4; k++)
+						{
+							int x1 = i + dx[k], x2 = i + dx[k] * 2;
+							int y1 = j + dy[k], y2 = j + dy[k] * 2;
+							if (x1 >= 0 && x1 < 7 &&
+								x2 >= 0 && x2 < 7 &&
+								y1 >= 0 && y1 < 7 &&
+								y2 >= 0 && y2 < 7)
+								if (s[x1][y1] == 1 && s[x2][y2] == 0)
+								{
+									s[i][j] = 0;
+									s[x1][y1] = 0;
+									s[x2][y2] = 1;
+									OriginState temps = OriginState(s);
+									if (!this->isrepeated_state(temps, state_map))//表中没有记录该状态 且没有等效状态
+									{
+										state_map[temps.state] = state_map[ostate] + this->num_to_string(i, j) + char(k + '0');
+										//cout << "forward" << state_map[temps.state]<<endl;
+										forward.push(temps);
+									}
+									else {
+										//表中已记录该状态，可以什么也不做，也可以比较步数，步数小则覆盖
+									}
+
+									s[i][j] = 1;
+									s[x1][y1] = 1;
+									s[x2][y2] = 0;
+								}
+						}
+		}
+		ostate = backward.front().state;
+		if (state_map.count(ostate))
+		{
+			string tempstring = back_map[ostate];
+			state_map[this->destin_state] = state_map[ostate];
+			for (int i = tempstring.size() - 3; i >= 0; i -= 3)
+			{
+				state_map[this->destin_state] += tempstring.substr(i, 3);
+			}
+			this->anwser_simple = state_map[this->destin_state];
+			this->chessnum_min = 1;
+			return;
+		}
+		/*	if (ostate!=this->destin_state&&backmap.count(ostate)) {
+				backward.pop();
+				continue;
+			}*/
+		backward.front().array_to_state_efficient(s, this->up, down, left, right);
+		int backwardnum = backward.front().get_chessnum();
+		backward.pop();
+		if (backwardnum < this->method_dividing)
+		{//遍历棋子
+			for (int i = up; i <= down; i++)
+				for (int j = left; j <= right; j++)
+					if (s[i][j] == 1)
+						for (int k = 0; k < 4; k++)
+						{
+							int x1 = i + dx[k], x2 = i + dx[k] * 2;
+							int y1 = j + dy[k], y2 = j + dy[k] * 2;
+							if (x1 >= 0 && x1 < 7 &&
+								x2 >= 0 && x2 < 7 &&
+								y1 >= 0 && y1 < 7 &&
+								y2 >= 0 && y2 < 7)
+								if (s[x1][y1] == 0 && s[x2][y2] == 0)
+								{
+									s[i][j] = 0;
+									s[x1][y1] = 1;
+									s[x2][y2] = 1;
+									OriginState temps = OriginState(s);
+									if (!this->isrepeated_state(temps, back_map))//表中没有记录该状态 且没有等效状态
+									{
+										back_map[temps.state] = back_map[ostate] + this->num_to_string(x2, y2) + char(k ^ 1 + '0');
+										//cout << "forward" << state_map[temps.state]<<endl;
+										backward.push(temps);
+									}
+									else {
+										//表中已记录该状态，可以什么也不做，也可以比较步数，步数小则覆盖
+									}
+
+									s[i][j] = 1;
+									s[x1][y1] = 0;
+									s[x2][y2] = 0;
+								}
+						}
+		}
+		else {
+			//遍历空格 backward
+			for (int i = up; i <= down; i++)
+				for (int j = left; j <= right; j++)
+					if (s[i][j] == 0)
+						for (int k = 0; k < 4; k++)
+						{
+							int x1 = i + dx[k], x2 = i + dx[k] * 2;
+							int y1 = j + dy[k], y2 = j + dy[k] * 2;
+							if (x1 >= 0 && x1 < 7 &&
+								x2 >= 0 && x2 < 7 &&
+								y1 >= 0 && y1 < 7 &&
+								y2 >= 0 && y2 < 7)
+								if (s[x1][y1] == 0 && s[x2][y2] == 1)
+								{
+									s[i][j] = 1;
+									s[x1][y1] = 1;
+									s[x2][y2] = 0;
+									OriginState temps = OriginState(s);
+									if (!this->isrepeated_state(temps, back_map))//表中没有记录该状态 且没有等效状态
+									{
+										back_map[temps.state] = back_map[ostate] + this->num_to_string(i, j) + char(k + '0');
+										//cout << "forward" << state_map[temps.state]<<endl;
+										backward.push(temps);
+									}
+									else {
+										//表中已记录该状态，可以什么也不做，也可以比较步数，步数小则覆盖
+									}
+
+									s[i][j] = 0;
+									s[x1][y1] = 0;
+									s[x2][y2] = 1;
+								}
+						}
+		}
+
+	}//while
+}

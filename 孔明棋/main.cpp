@@ -39,6 +39,7 @@ int main()
 		cout << "1.simple棋局创建" << endl << "2.central棋局创建" << endl << "3.central棋局，内存优化求解" << endl;
 		cout << "4.central more less memory" << endl;
 		cout << "5.central_BFS棋局创建，搜索最少剩余的一个解" << endl;
+		cout << "6.BycicleBFS" << endl;
 		scanf("%d", &op);
 		switch (op) {
 
@@ -78,6 +79,12 @@ int main()
 			centralcase5.OnlyOneLeft();
 			centralcase5.print_OnlyOneLeft();
 			break;
+		}
+		case 6: {
+			Boardgame_central centralcase6(Boardgame_simple::read_string());
+			centralcase6.print_simplecase();
+			centralcase6.OnlyOneLeft_BycicleBFS();
+			centralcase6.print_OnlyOneLeft();
 		}
 		}//switch
 	}//while

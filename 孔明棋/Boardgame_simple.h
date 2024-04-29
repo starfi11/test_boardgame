@@ -97,7 +97,8 @@ struct Boardgame_central :public Boardgame_simple {
 	void LeastStepsSolve();
 	void LeastStepsSolve_less_memory();
 	void LeastStepsSolve_more_less_memory();
-	void OnlyOneLeft();//使用双向bfs，面向中心对称棋局，求解和父类OnlyOneLeft一样的问题
+	void OnlyOneLeft();//使用bfs，面向中心对称棋局，求解和父类OnlyOneLeft一样的问题
+	void OnlyOneLeft_BycicleBFS();
 
 	void LSS_less_memory_bfs(queue<ConState>& before, queue<ConState>& after, map<long long, int>& visited);
 	void print_LeastStepsSolve();
