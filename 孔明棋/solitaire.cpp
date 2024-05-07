@@ -11,7 +11,7 @@ long long OriginState::array_to_state_efficient(char array[10][10], int up, int 
 			}
 	return ans;
 }
-int OriginState::get_chessnum()//计算棋局中棋子的个数
+int OriginState::get_chessnum() const//计算棋局中棋子的个数
 {
 	long long temp = state;
 	int ans = 0;

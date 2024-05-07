@@ -5,6 +5,7 @@
 #include<vector>
 #include<string>
 #include<queue>
+#include<algorithm>
 using namespace std;
 struct OriginState {
 
@@ -22,7 +23,7 @@ struct OriginState {
 	OriginState(long long state):state(state){}
 	OriginState(char array[10][10]){ this->state = OriginState::array_to_state_unsecure(array); }
 	OriginState(char array[10][10],int up,int down,int left,int right){}
-	int get_chessnum();//获得本状态的棋子数
+	int get_chessnum() const;//获得本状态的棋子数
 
 
 	/*******  	静态函数成员（工具函数）	*******/

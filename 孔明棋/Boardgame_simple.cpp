@@ -1,4 +1,27 @@
 #include"Boardgame_simple.h"
+void Boardgame_simple::print_chessboard(long long state)
+{
+	char array[10][10];
+	memcpy(array, this->chessboard, sizeof(this->chessboard));
+	this->state_to_array_unsecure(array, state);
+	this->print_chessboard(array);
+}
+int Boardgame_simple::get_routesteps(string s)
+{
+	int ans = 0;
+	int beforenum = -1;
+	int x, y, k;
+	for (int i = 0; i <= s.size() - 3; i += 3)
+	{
+		x = s[i] - '0';
+		y = s[i + 1] - '0';
+		k = s[i + 2] - '0';
+		if (x * 10 + y != beforenum)
+			ans++;
+		beforenum = (x + dx[k] * 2) * 10 + y + dy[k] * 2;
+	}
+	return ans;
+}
 void Boardgame_simple::print_route_continuous(string s)
 {
 	char array[State::board_maxlength][State::board_maxlength];
@@ -13,6 +36,13 @@ void Boardgame_simple::print_route_continuous(string s)
 		x = s[i] - '0';
 		y = s[i + 1] - '0';
 		direct = s[i + 2] - '0';
+		if (array[x][y] != 1 ||
+			array[x + Boardgame_simple::dx[direct]][y + dy[direct]] != 1 ||
+			array[x + dx[direct] * 2][y + dy[direct] * 2] != 0)
+		{
+			cout << "route error" << endl;
+			return;
+		}
 		array[x][y] = 0;
 		array[x + Boardgame_simple::dx[direct]][y + dy[direct]] = 0;
 		array[x + dx[direct] * 2][y + dy[direct] * 2] = 1;
@@ -215,11 +245,23 @@ string Boardgame_simple::read_string()
 	cout << "输入棋盘格局,可有空格,以EOF结尾" << endl;
 	string s;
 	string ans;
+	/*getchar();
 	getline(cin, ans);
 	while (getline(cin,s))
 	{
 		ans += '0';
 		ans += s;
+	}
+	return ans;*/
+	char ch;
+	getchar();
+	while ((ch = getchar()) != EOF)
+	{
+		if (ch == ' ')
+			continue;
+		else if (ch == '\n')
+			ans += '0';
+		else ans += ch;
 	}
 	return ans;
 }

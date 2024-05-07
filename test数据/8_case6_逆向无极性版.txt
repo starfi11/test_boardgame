@@ -1,0 +1,694 @@
+最短步数：6
+解个数：5
+523541200403423230433462441362341142120313
+523541200403423230433451461262341142120313
+433451230200403423461262523541341142120313
+433451461262230200403423523541341142120313
+433451230461262200403423523541341142120313
+
+52r54u20d40r42r23d43r46l44u36l34u14l12d31r
+
+52r54u20d40r42r23d43r45u46u26l34u14l12d31r
+43r45u23d20d40r42r46u26l52r54u34u14l12d31r
+43r45u46u26l23d20d40r42r52r54u34u14l12d31r
+43r45u23d46u26l20d40r42r52r54u34u14l12d31r
+解法1
+step0.0
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o o o
+* * o * o * *
+o * o * * o *
+. . * * o . .
+. . o o o . .
+step1.1
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o o o
+* * o * o * *
+o * o * * o *
+. . o o * . .
+. . o o o . .
+step1.2
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o o o
+* * o * * * *
+o * o * o o *
+. . o o o . .
+. . o o o . .
+step2.3
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * * o o o
+o * o * * * *
+* * o * o o *
+. . o o o . .
+. . o o o . .
+step2.4
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * * o o o
+o * o * * * *
+o o * * o o *
+. . o o o . .
+. . o o o . .
+step2.5
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * * o o o
+o * o * * * *
+o o o o * o *
+. . o o o . .
+. . o o o . .
+step3.6
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o o o o
+o * o o * * *
+o o o * * o *
+. . o o o . .
+. . o o o . .
+step3.7
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o o o o
+o * o o * * *
+o o o o o * *
+. . o o o . .
+. . o o o . .
+step4.8
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o o o o
+o * o o * * *
+o o o o * o o
+. . o o o . .
+. . o o o . .
+step4.9
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o o * *
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.10
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o * o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.11
+ChessBoard:
+. . o o o . .
+. . o * * . .
+o o * o o o o
+o * o o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.12
+ChessBoard:
+. . o o o . .
+. . * o o . .
+o o * o o o o
+o * o o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.13
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o * * o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step6.14
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o * o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+解法2
+step0.0
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o o o
+* * o * o * *
+o * o * * o *
+. . * * o . .
+. . o o o . .
+step1.1
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o o o
+* * o * o * *
+o * o * * o *
+. . o o * . .
+. . o o o . .
+step1.2
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o o o
+* * o * * * *
+o * o * o o *
+. . o o o . .
+. . o o o . .
+step2.3
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * * o o o
+o * o * * * *
+* * o * o o *
+. . o o o . .
+. . o o o . .
+step2.4
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * * o o o
+o * o * * * *
+o o * * o o *
+. . o o o . .
+. . o o o . .
+step2.5
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * * o o o
+o * o * * * *
+o o o o * o *
+. . o o o . .
+. . o o o . .
+step3.6
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o o o o
+o * o o * * *
+o o o * * o *
+. . o o o . .
+. . o o o . .
+step3.7
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o o o o
+o * o o * * *
+o o o o o * *
+. . o o o . .
+. . o o o . .
+step3.8
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o o * o
+o * o o * o *
+o o o o o o *
+. . o o o . .
+. . o o o . .
+step4.9
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o o * *
+o * o o * o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step4.10
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o * o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.11
+ChessBoard:
+. . o o o . .
+. . o * * . .
+o o * o o o o
+o * o o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.12
+ChessBoard:
+. . o o o . .
+. . * o o . .
+o o * o o o o
+o * o o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.13
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o * * o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step6.14
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o * o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+解法3
+step0.0
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o o o
+* * o * o * *
+o * o * * o *
+. . * * o . .
+. . o o o . .
+step1.1
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o o o
+* * o * o * *
+o * o o o * *
+. . * * o . .
+. . o o o . .
+step1.2
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o * o
+* * o * o o *
+o * o o o o *
+. . * * o . .
+. . o o o . .
+step2.3
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * o o * o
+* * o o o o *
+o * o * o o *
+. . * * o . .
+. . o o o . .
+step3.4
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o o * o
+o * o o o o *
+* * o * o o *
+. . * * o . .
+. . o o o . .
+step3.5
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o o * o
+o * o o o o *
+o o * * o o *
+. . * * o . .
+. . o o o . .
+step3.6
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o o * o
+o * o o o o *
+o o o o * o *
+. . * * o . .
+. . o o o . .
+step4.7
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o o * *
+o * o o o o o
+o o o o * o o
+. . * * o . .
+. . o o o . .
+step4.8
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o o o o
+o o o o * o o
+. . * * o . .
+. . o o o . .
+step5.9
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o o o o
+o o o o * o o
+. . o o * . .
+. . o o o . .
+step5.10
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o * o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.11
+ChessBoard:
+. . o o o . .
+. . o * * . .
+o o * o o o o
+o * o o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.12
+ChessBoard:
+. . o o o . .
+. . * o o . .
+o o * o o o o
+o * o o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.13
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o * * o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step6.14
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o * o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+解法4
+step0.0
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o o o
+* * o * o * *
+o * o * * o *
+. . * * o . .
+. . o o o . .
+step1.1
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o o o
+* * o * o * *
+o * o o o * *
+. . * * o . .
+. . o o o . .
+step1.2
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o * o
+* * o * o o *
+o * o o o o *
+. . * * o . .
+. . o o o . .
+step2.3
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o * *
+* * o * o o o
+o * o o o o o
+. . * * o . .
+. . o o o . .
+step2.4
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * * o o
+* * o * o o o
+o * o o o o o
+. . * * o . .
+. . o o o . .
+step3.5
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * o * o o
+* * o o o o o
+o * o * o o o
+. . * * o . .
+. . o o o . .
+step4.6
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o o o o
+* * o * o o o
+. . * * o . .
+. . o o o . .
+step4.7
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o o o o
+o o * * o o o
+. . * * o . .
+. . o o o . .
+step4.8
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o o o o
+o o o o * o o
+. . * * o . .
+. . o o o . .
+step5.9
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o o o o
+o o o o * o o
+. . o o * . .
+. . o o o . .
+step5.10
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o * o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.11
+ChessBoard:
+. . o o o . .
+. . o * * . .
+o o * o o o o
+o * o o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.12
+ChessBoard:
+. . o o o . .
+. . * o o . .
+o o * o o o o
+o * o o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.13
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o * * o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step6.14
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o * o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+解法5
+step0.0
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o o o
+* * o * o * *
+o * o * * o *
+. . * * o . .
+. . o o o . .
+step1.1
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o o o
+* * o * o * *
+o * o o o * *
+. . * * o . .
+. . o o o . .
+step1.2
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * * o * o
+* * o * o o *
+o * o o o o *
+. . * * o . .
+. . o o o . .
+step2.3
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * o o * o
+* * o o o o *
+o * o * o o *
+. . * * o . .
+. . o o o . .
+step3.4
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * o o * *
+* * o o o o o
+o * o * o o o
+. . * * o . .
+. . o o o . .
+step3.5
+ChessBoard:
+. . o o o . .
+. . o * o . .
+* o * o * o o
+* * o o o o o
+o * o * o o o
+. . * * o . .
+. . o o o . .
+step4.6
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o o o o
+* * o * o o o
+. . * * o . .
+. . o o o . .
+step4.7
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o o o o
+o o * * o o o
+. . * * o . .
+. . o o o . .
+step4.8
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o o o o
+o o o o * o o
+. . * * o . .
+. . o o o . .
+step5.9
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o o o o
+o o o o * o o
+. . o o * . .
+. . o o o . .
+step5.10
+ChessBoard:
+. . o o o . .
+. . o * o . .
+o o * o * o o
+o * o o * o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.11
+ChessBoard:
+. . o o o . .
+. . o * * . .
+o o * o o o o
+o * o o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.12
+ChessBoard:
+. . o o o . .
+. . * o o . .
+o o * o o o o
+o * o o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step5.13
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o * * o o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step6.14
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o * o o o
+o o o o o o o
+. . o o o . .
+. . o o o . .

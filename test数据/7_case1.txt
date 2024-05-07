@@ -1,0 +1,327 @@
+1.simple棋局dfs(最大支持10*10),搜索最少剩余的一个解
+2.central棋局bfs求最短步数的所有解(最大8*8)
+3.central less memory，2的内存优化求解
+4.central more less memory,3的再优化求解
+5.central_BFS，搜索最少剩余的一个解
+6.central_BycicleBFS,双向bfs，搜索一个天才解（中心）（8*8以内中心对称棋局均可)
+7.central_dfs 有去重的dfs搜索一个解
+8.central_BiBfsAll 优化等效状态的双向bfs求解步数最少的所有解
+9.Astar
+-1.BFS统计由此棋局会产生多少状态，经过多少个状态
+-2.test()
+7
+输入棋盘格局,可有空格,以EOF结尾
+.  .  *  *  *  .  .  .
+.  .  *  *  *  .  .  .
+* *  *  *  *  * * .
+* *  *  o *  * *  .
+* *  *  *  *  * *  .
+.  .  *  *  *  .  .  .
+.  .  *  *  *  .  .  .
+.  .  .   .   .  .  .  .
+^Z
+origin_state = 8589869055
+up    = 0
+down  = 6
+left  = 0
+right = 6
+ChessBoard:
+. . * * * . .
+. . * * * . .
+* * * * * * *
+* * * o * * *
+* * * * * * *
+. . * * * . .
+. . * * * . .
+最少剩余:1
+路径压缩串:531230030313331213020142341232203401040252232203120541423340462260621320642621413433462541343
+路径压缩串:53u23d03d31r33u21r02d14l34u23l20r40u04d25l23l20r12d54u42r34d46l26d62u32d64l62u41r43r46l54u34r
+路径输出:
+step0
+ChessBoard:
+. . * * * . .
+. . * * * . .
+* * * * * * *
+* * * o * * *
+* * * * * * *
+. . * * * . .
+. . * * * . .
+step1
+ChessBoard:
+. . * * * . .
+. . * * * . .
+* * * * * * *
+* * * * * * *
+* * * o * * *
+. . * o * . .
+. . * * * . .
+step2
+ChessBoard:
+. . * * * . .
+. . * * * . .
+* * * o * * *
+* * * o * * *
+* * * * * * *
+. . * o * . .
+. . * * * . .
+step3
+ChessBoard:
+. . * o * . .
+. . * o * . .
+* * * * * * *
+* * * o * * *
+* * * * * * *
+. . * o * . .
+. . * * * . .
+step4
+ChessBoard:
+. . * o * . .
+. . * o * . .
+* * * * * * *
+* o o * * * *
+* * * * * * *
+. . * o * . .
+. . * * * . .
+step5
+ChessBoard:
+. . * o * . .
+. . * * * . .
+* * * o * * *
+* o o o * * *
+* * * * * * *
+. . * o * . .
+. . * * * . .
+step6
+ChessBoard:
+. . * o * . .
+. . * * * . .
+* o o * * * *
+* o o o * * *
+* * * * * * *
+. . * o * . .
+. . * * * . .
+step7
+ChessBoard:
+. . o o * . .
+. . o * * . .
+* o * * * * *
+* o o o * * *
+* * * * * * *
+. . * o * . .
+. . * * * . .
+step8
+ChessBoard:
+. . o o * . .
+. . * o o . .
+* o * * * * *
+* o o o * * *
+* * * * * * *
+. . * o * . .
+. . * * * . .
+step9
+ChessBoard:
+. . o o * . .
+. . * o * . .
+* o * * o * *
+* o o o o * *
+* * * * * * *
+. . * o * . .
+. . * * * . .
+step10
+ChessBoard:
+. . o o * . .
+. . * o * . .
+* * o o o * *
+* o o o o * *
+* * * * * * *
+. . * o * . .
+. . * * * . .
+step11
+ChessBoard:
+. . o o * . .
+. . * o * . .
+o o * o o * *
+* o o o o * *
+* * * * * * *
+. . * o * . .
+. . * * * . .
+step12
+ChessBoard:
+. . o o * . .
+. . * o * . .
+* o * o o * *
+o o o o o * *
+o * * * * * *
+. . * o * . .
+. . * * * . .
+step13
+ChessBoard:
+. . o o o . .
+. . * o o . .
+* o * o * * *
+o o o o o * *
+o * * * * * *
+. . * o * . .
+. . * * * . .
+step14
+ChessBoard:
+. . o o o . .
+. . * o o . .
+* o * * o o *
+o o o o o * *
+o * * * * * *
+. . * o * . .
+. . * * * . .
+step15
+ChessBoard:
+. . o o o . .
+. . * o o . .
+* * o o o o *
+o o o o o * *
+o * * * * * *
+. . * o * . .
+. . * * * . .
+step16
+ChessBoard:
+. . o o o . .
+. . * o o . .
+o o * o o o *
+o o o o o * *
+o * * * * * *
+. . * o * . .
+. . * * * . .
+step17
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o *
+o o * o o * *
+o * * * * * *
+. . * o * . .
+. . * * * . .
+step18
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o *
+o o * o * * *
+o * * * o * *
+. . * o o . .
+. . * * * . .
+step19
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o *
+o o * o * * *
+o * o o * * *
+. . * o o . .
+. . * * * . .
+step20
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o *
+o o * o o * *
+o * o o o * *
+. . * o * . .
+. . * * * . .
+step21
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o *
+o o * o o * *
+o * o o * o o
+. . * o * . .
+. . * * * . .
+step22
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o * o o * o
+o * o o * o *
+. . * o * . .
+. . * * * . .
+step23
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o * o o * o
+o * * o * o *
+. . o o * . .
+. . o * * . .
+step24
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o o o * o
+o * o o * o *
+. . * o * . .
+. . o * * . .
+step25
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o o o * o
+o * o o * o *
+. . * o * . .
+. . * o o . .
+step26
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o o o * o
+o * * o * o *
+. . o o * . .
+. . o o o . .
+step27
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o o o * o
+o o o * * o *
+. . o o * . .
+. . o o o . .
+step28
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o o o * o
+o o o o o * *
+. . o o * . .
+. . o o o . .
+step29
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o o o * o
+o o o o * o o
+. . o o * . .
+. . o o o . .
+step30
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o o * * o
+o o o o o o o
+. . o o o . .
+. . o o o . .
+step31
+ChessBoard:
+. . o o o . .
+. . o o o . .
+o o o o o o o
+o o o o o o *
+o o o o o o o
+. . o o o . .
+. . o o o . .

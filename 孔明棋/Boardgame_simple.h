@@ -1,5 +1,11 @@
 #pragma once
 #include"solitaire.h"
+struct Statecmp {
+	bool operator()(const State& x, const State& y)
+	{
+		return x.state > y.state;//若x大则交换
+	}
+};
 struct Boardgame_simple {
 
 	//面向所有棋局的dfs解
@@ -30,13 +36,16 @@ struct Boardgame_simple {
 	long long array_to_state(char array[State::board_maxlength][State::board_maxlength]);//simple类提供的更高效的转换函数
 	void print_chessboard(char[State::board_maxlength][State::board_maxlength]);
 	void print_chessboard();
+	void print_chessboard(long long state);
 	void print_simplecase();
 	void OnlyOneLeft();//dfs搜索棋子仅剩一个的解
+	bool dfs(char[State::board_maxlength][State::board_maxlength], int, string);
+	
 	void print_OnlyOneLeft();
 	void print_route() { print_route(this->anwser_simple); }
 	void print_route(string);
 	void print_route_continuous(string);
-	bool dfs(char[State::board_maxlength][State::board_maxlength],int,string);
+	
 	int get_chessnum(char s[State::board_maxlength][State::board_maxlength]);
 	string route_transfer_string() { return route_transfer_string(this->anwser_simple); }
 	string route_transfer_string(string ans) {
@@ -57,7 +66,7 @@ struct Boardgame_simple {
 	long long mirror_vertical(char s[State::board_maxlength][State::board_maxlength]);//要注意，被镜像的只有有效部分
 	
 	static string read_string();
-	
+	static int get_routesteps(string s);
 	static string num_to_string(int i, int j)
 	{
 		//从上至下 从左至右 00~99
@@ -94,15 +103,41 @@ struct Boardgame_central :public Boardgame_simple {
 		step_min = this->chessnum_min;
 	}
 	void print_centralcase();
-	void LeastStepsSolve();
+
+
+	void LeastStepsSolve();//BFS中由等效状态最小step剪枝，基本剪不了多少，需要判route串的完全等效剪枝
 	void LeastStepsSolve_less_memory();
 	void LeastStepsSolve_more_less_memory();
-	void OnlyOneLeft();//使用bfs，面向中心对称棋局，求解和父类OnlyOneLeft一样的问题
-	void OnlyOneLeft_BycicleBFS();
+	void LeastStepsSolve_Astar();//未完工的Astar,求串的等效操作涉及太多
+	void LeastStepsSlove_BiBfsAll();
 
+	void BiBfsAll_sub(priority_queue<State, vector<State>, Statecmp>& forward, priority_queue<State, vector<State>, Statecmp>& backward);
+	void OnlyOneLeft();//使用bfs，面向中心对称棋局，求解和父类OnlyOneLeft一样的问题
+	void OnlyOneLeft_BycicleBFS();//有bug，没解决，解决后还需优化等效状态导致的双向b闭合后移问题
+	void OnlyOneLeft_deequal();//求一个解的dfs带去重，仅处理中心对称棋局
+
+
+	bool dfs_deequal(char array[State::board_maxlength][State::board_maxlength], int chessnum, string route,map<long long, bool>&);
 	void LSS_less_memory_bfs(queue<ConState>& before, queue<ConState>& after, map<long long, int>& visited);
 	void print_LeastStepsSolve();
 	long long turn_unsecure(char array[State::board_maxlength][State::board_maxlength]);//将传入的数组内left~right up~down中的有效部分永久旋转，并返回压缩码
 	bool isrepeated_state(ConState& state, map<long long, int>&);
 	bool isrepeated_state(OriginState& st, map<long long, string>& visited);
+	bool isrepeated_state(OriginState& st, map<long long, bool>& visited);
+	void print_statenum();//BFS计算总状态数
+
+	int statesimilar(long long state)
+	{
+		long long temp = this->destin_state;
+		int ans = 0;
+		for (int i = 0; i < this->squarenum; i++)
+		{
+			if ((temp % 2) == (state % 2))
+				ans++;
+			temp /= 2;
+			state /= 2;
+		}
+		return ans;
+	}
+
 };

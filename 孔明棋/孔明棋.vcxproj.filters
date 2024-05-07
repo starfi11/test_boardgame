@@ -35,5 +35,11 @@
     <ClCompile Include="Boardgame_central.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="solve.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BiBfsAll.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
